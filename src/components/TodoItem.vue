@@ -1,4 +1,21 @@
 <template>
+    <div>
+    <h1>Lista de Tareas.</h1>
+    <div v-for="task in tasks" :key="task.id">
+        <TodoItem 
+        :title="task.todo" 
+        :completed="task.completed" 
+        @toggle-completion="toggleTaskCompletion(task)"
+        @delTodo="deleteTask(task)"
+        placeholder="Añadir nueva tarea"
+        class="task-input"
+        @keyup.enter="addTask"
+        />
+    </div>
+    </div>
+</template>
+
+<template>
     <!-- Contenedor principal del ítem de tarea -->
     <div>
         <!-- Contenedor del título y el estado de la tarea -->
