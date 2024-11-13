@@ -1,24 +1,20 @@
 <template>
-    <div class="add-task-container">
-        <h1>Añadir Tarea</h1>
-        <div class="input-group">
-            <input 
-                v-model="newTask" 
-                @keyup.enter="addTask" 
-                placeholder="Añadir nueva tarea" 
-                class="task-input"
-            />
-            <button @click="addTask" class="add-button">Añadir</button>
-        </div>
-
-        <div v-if="tasks.length > 0" class="task-list">
-            <div v-for="task in tasks" :key="task.id" class="task-item">
-                <span :class="{ completed: task.completed }">{{ task.todo }}</span>
-                <div>
-                    <button @click="toggleTaskCompletion(task)">
-                        {{ task.completed ? 'Desmarcar' : 'Completar' }}
-                    </button>
-                    <button @click="deleteTask(task)">Eliminar</button>
+    <div class="container mt-4 d-flex justify-content-center">
+        <div  class="row">
+            <h1 v-if="showTitle" class="text-center text-primary mb-4 title">Añadir Tarea</h1>
+            <div class="input-group mb-3">
+                <input v-model="newTask" @keyup.enter="addTask" placeholder="Añadir nueva tarea" aria-label="Nueva Tarea " class="form-control task-input me-0 length=100"/>
+                <button @click="addTask" class=" btn btn-primary"> Añadir </button>
+            </div>
+            <div v-if="tasks.length > 0" class="task-list">
+                <div v-for="task in tasks" :key="task.id" class="task-item">
+                    <span :class="{ completed: task.completed }">{{ task.todo }}</span>
+                    <div>
+                        <button @click="toggleTaskCompletion(task)">
+                            {{ task.completed ? 'Desmarcar' : 'Completar' }}
+                        </button>
+                        <button @click="deleteTask(task)"> Eliminar </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,10 +24,17 @@
 <script>
 export default {
     name: "AddTask",
+
+    props: {
+        showTitle: {
+            type: Boolean,
+            default: true,
+        },
+    },
     data() {
         return {
             newTask: "", // Campo de entrada para la nueva tarea
-            tasks: [],   // Lista de tareas locales
+            tasks: [],// Lista de tareas locales
         };
     },
     methods: {
@@ -46,7 +49,7 @@ export default {
 
             // Añadir la nueva tarea al inicio de la lista
             this.tasks.unshift(newTask);
-            this.newTask = ""; // Limpiar el campo de entrada después de agregar
+            this.newTask = "";// Limpiar el campo de entrada después de agregar
         },
 
         // Elimina una tarea específica de la lista
@@ -63,6 +66,7 @@ export default {
 </script>
 
 <style scoped>
+
 .add-task-container {
     padding: 20px;
     max-width: 400px;
@@ -79,7 +83,7 @@ export default {
     padding: 8px;
     margin-right: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 .add-button {
@@ -89,6 +93,7 @@ export default {
     background-color: #007bff;
     color: white;
     cursor: pointer;
+
 }
 
 .task-list {

@@ -1,35 +1,92 @@
 <template>
   <div id="app">
-    <!-- Barra de navegación con enlaces a diferentes rutas -->
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/addtask">Agregar Tarea</router-link> 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+      <div class="container">
+        <router-link to="/" class="navbar-brand d-flex align-items-center">
+          <img src="./assets/logo.png" alt="Logo" width="40" height="40" class="d-inline-block align-top mr-2" />
+            Gestor de Tareas
+        </router-link>
+        <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarNav" class="collapse navbar-collapse d-flex justify-content-end">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <router-link to="/addtask" class="nav-link"><i class="bi bi-plus-circle me-2"></i>Agregar Tarea</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/tasklist" class="nav-link"><i class="bi bi-card-list me-2"></i>Lista de Tareas</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/combinedview" class="nav-link"><i class="bi bi-grid me-2"></i>Vista Combinada </router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <!-- Aquí se cargará el componente correspondiente a la ruta seleccionada -->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+<script>
+import router from './router';
+
+
+export default {
+  name: 'App',
+  router
+};
+</script>
+
+
+<!-- <style>
+.add-task-container {
+    padding: 10px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-nav {
-  padding: 30px;
+.input-group {
+    display: flex;
+    margin-bottom: 10px;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.task-input {
+    flex-grow: 1;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.add-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
 }
-</style>
+
+.task-list {
+    margin-top: 20px;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+</style> -->
+
+
+
+
